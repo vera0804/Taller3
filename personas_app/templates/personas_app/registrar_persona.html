@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Persona</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:rgb(184, 76, 162);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color:rgb(80, 44, 72);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        input {
+            padding: 0.6rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-top: 0.2rem;
+        }
+
+        button {
+            margin-top: 1.5rem;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 6px;
+            background-color:rgb(164, 82, 147);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color:rgb(185, 41, 137);
+        }
+
+        .errorlist {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        .error-box {
+            background: #fdecea;
+            color: #c0392b;
+            border: 1px solid #e74c3c;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registrar Nueva Persona</h1>
+
+        {% if form.errors %}
+            <div class="error-box">
+                <strong>Por favor corrige los errores:</strong>
+                {{ form.errors }}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+</body>
+</html>
